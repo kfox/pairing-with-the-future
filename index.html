@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Pairing with the Future</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.min.css" />
+    <link rel="stylesheet" href="css/theme/pwtf.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h4 class="subtitle left">Maximizing the collaborative potential of your software</h4>
+          <hr />
+          <h1 class="title">Pairing with the Future</h1>
+          <hr />
+          <div class="contact right">Kelly Fox</div>
+        </section>
+
+        <section data-background-image="./assets/images/color-coded-racetrack.gif">
+          <h1 class="full-size">Code is communication</h1>
+          <h2 class="subtitle">Across time and space</h2>
+          <aside class="notes">
+            If your project or team is big enough, or your software is useful enough, your code will eventually be seen by other people. More importantly, it will probably need to be understood and changed by some of those other people. That means someone else, or maybe even you 6 months in the future, will need to read and understand your code.
+          </aside>
+        </section>
+
+        <section>
+          <h2>How do developers spend their time?</h2>
+          <image src="./assets/images/time-spent.png" class="stretch" />
+          <div>
+            Note: This is based on how it feels.
+          </div>
+          <aside class="notes">
+            From the Coding Horror blog by Jeff Attwood (Stack Overflow co-founder)
+https://blog.codinghorror.com/when-understanding-means-rewriting/
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="full-size">
+            Ease of change directly correlates
+            <br />
+            with ease of understanding
+          </h2>
+          <p class="attribution">
+            Rebecca Parsons
+            <br />
+            CTO, ThoughtWorks
+          </p>
+
+          <aside class="notes">
+            Comprehensible code facilitates change. If there are no surprises, it means you spend less time untangling someone else’s logic.
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="full-size">
+            Code is written for humans first,
+          <br />
+            machines second
+          </h2>
+          <aside class="notes">
+            The MIT textbook Structure and Interpretation of Computer Programs said:
+
+Programs must be written for people to read, and only incidentally for machines to execute
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="full-size">
+            Projects are easy to start,
+            <br />
+            But harder to finish
+          </h2>
+          <aside class="notes">
+            Clean, well-structured code matters. As a project grows, the complexity increases. The more time you spend trying to understand how code is working is less time spent adding features or fixing bugs.
+          </aside>
+        </section>
+
+        <section>
+          <h1 class="full-size">Cache your context</h1>
+          <aside class="notes">
+            You need to look for ways to preserve your thought context.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Suggestions, not rules</h1>
+          <ul>
+            <li>
+              What follows are starting points for discussion, and may not be appropriate for every situation.
+            </li>
+            <li>
+              Some suggestions may be easier to implement than others.
+            </li>
+            <li>
+              Use these guidelines to help you approach coding with a future-looking perspective. Imagine someone new to your codebase trying to make sense of the code you’re writing.
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/images/cassini-orbits.gif">
+          <h1 class="full-size">Project, file, and function structure</h1>
+        </section>
+
+        <section>
+          <h2>Approaches to Project Organization</h2>
+          <ul>
+            <li>
+              Follow conventions for the language or framework
+            </li>
+            <li>
+              Arrange folders intuitively, from abstract to specific
+            </li>
+            <li>
+              Organize code by features or functionality
+            </li>
+            <li>
+              Keep related files and code “close together”
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>General file layout</h2>
+          <ol>
+            <li>
+              Imports (built-in, external, internal)
+            </li>
+            <li>
+              Variables common to the entire file
+            </li>
+            <li>
+              Function and class definitions, before use
+            </li>
+            <li>
+              Main program logic
+            </li>
+            <li>
+              Exports
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Structure of a function or method</h2>
+          <ol>
+            <li>
+              Variable declarations and assignments
+            </li>
+            <li>
+              Early return (if necessary)
+            </li>
+            <li>
+              Core function logic
+            </li>
+            <li>
+              Return statement/value
+            </li>
+          </ol>
+          <p>
+            Use blank lines to separate sections.
+          </p>
+        </section>
+
+        <section data-background-image="./assets/images/cat-in-a-box.gif">
+          <h1 class="full-size">Sizing</h1>
+        </section>
+
+        <section>
+          <h2>Sizing recommendations</h2>
+          <table>
+            <thead>
+              <tr>
+                <th align="center">Item</th>
+                <th align="center">Limit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Line length</td>
+                <td>80 characters</td>
+              </tr>
+              <tr>
+                <td>Function Arity</td>
+                <td>3 arguments</td>
+              </tr>
+              <tr>
+                <td>Function Length</td>
+                <td>10 logical lines</td>
+              </tr>
+              <tr>
+                <td>Class</td>
+                <td>1 page</td>
+              </tr>
+              <tr>
+                <td>File</td>
+                <td>2 pages</td>
+              </tr>
+              <tr>
+                <td>Files in a folder</td>
+                <td>Minimal scrolling</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h1>Good functions and methods</h1>
+          <p>
+            <pre><code class="hljs" data-trim data-no-escape>
+              int getRandomNumber()
+              {
+                return 4; // chosen by 6-sided die roll
+                          // guaranteed to be random
+              }
+            </code></pre>
+          </p>
+        </section>
+
+        <section>
+          <h2>Tips for Good Functions and Methods</h2>
+          <ul>
+            <li>
+              Functions should do one thing and do it well.
+            </li>
+            <li>
+              The same inputs should always give the same outputs.
+            </li>
+            <li>
+              Avoid sharing or changing state.
+            </li>
+            <li>
+              Avoid side effects.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Arity: The number of function arguments</h2>
+          <ul>
+            <li>
+              Try to keep the number of function arguments to three or less. It can be difficult to remember argument order when two or more arguments are required.
+            </li>
+            <li>
+              If more arguments are needed, pass an “options” object as the last function argument.
+              An options object as the last function argument allows you to change the number of arguments without refactoring all references to that function.
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-color="#34A5DA">
+          <h2>
+            There are only two hard things in Computer Science: cache invalidation and naming things.
+          </h2>
+          <p class="attribution">Phil Karlton (possibly)</p>
+        </section>
+
+        <section>
+          <h2>Naming</h2>
+          <ul>
+            <li>
+              Pick obvious names.
+            </li>
+            <li>
+              Choose names that help your code read like a narrative.
+            </li>
+            <li>
+              Don’t avoid long names if they’re appropriate.
+            </li>
+            <li>
+              Define all “magic” numbers or strings as variables to explicitly communicate what they represent.
+            </li>
+            <li>
+              Check for namespace collisions.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <image src="./assets/images/code-in-comments.jpg" class="stretch" />
+          <h1>Code Comments</h1>
+        </section>
+
+        <section>
+          <h2>Comments are useful for ...</h2>
+          <ul>
+            <li>
+              API documentation, often for use with tools like Javadoc, JSDoc, Swagger, etc.
+            </li>
+            <li>
+              Linter directives, for tools like ESLint (JavaScript), flake8 (Python), etc.
+            </li>
+            <li>
+              Describing curious code that you were forced to include for non-obvious reasons, e.g. to circumvent a known bug or deal with a poorly-written API. (Include a link to the issue.)
+            </li>
+            <li>
+              Illustrating program flow or data handling in code samples, e.g. for beginners learning to code, or when explaining details of a new programming concept.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Comments are Superfluous When ...</h2>
+          <ul>
+            <li>
+              Describing normal functionality.
+            </li>
+            <li>
+              Describing complex functionality. Refactor your code instead.
+            </li>
+            <li>
+              Preventing code from being executed, unless it’s for temporary debugging.
+            </li>
+            <li>
+              Keeping code around “just in case”. Delete it and rely on version control.
+            </li>
+            <li>
+              Managing “todos” or describing changes that need to happen later. Use an issue-tracking system.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <image src="./assets/images/code-refactoring.gif" class="stretch" />
+        </section>
+
+        <section>
+          <h2>Refactoring for DRY-ness</h2>
+          <ul>
+            <li>
+              Extract repeated patterns from your code to helper functions.
+            </li>
+            <li>
+              Define common constants in a shared file.
+            </li>
+            <li>
+              Avoid over-generalizing functions, classes, or objects. Consider using function composition, inheriting from superclasses, or partitioning objects.
+            </li>
+          </ul>
+          <p>
+            DRY = Don't Repeat Yourself
+          </p>
+        </section>
+
+        <section>
+          <h2>Refactoring for Simplicity</h2>
+          <ul>
+            <li>
+              Avoid nesting. Try extracting nested code to external functions.
+            </li>
+            <li>
+              Avoid clever code. Cleverness often conceals functionality; save it for high-performance or coding challenges.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Refactoring for Clarity</h2>
+          <ul>
+            <li>
+              Limit functions or methods to one purpose.
+            </li>
+            <li>
+              Move transformational code into separate functions with meaningful names.
+            </li>
+            <li>
+              Ensure magic numbers and strings are replaced by meaningful constants.
+            </li>
+            <li>
+              Don’t be afraid to create one-line functions.
+            </li>
+            <li>
+              Write more verbose code if it facilitates understanding and doesn’t adversely impact performance.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Refactoring for Testability</h2>
+          <ul>
+            <li>
+              Only export what needs to be tested.
+            </li>
+            <li>
+              Don’t (deeply) test third-party code.
+            </li>
+            <li>
+              Get configuration out of your code. Use a file, database, environment variables, etc.
+            </li>
+            <li>
+              Use dependency injection to simplify testing of external services, varying environments, or complex objects.
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/images/it-does-not-compile.png">
+          <h1 class="full-size">Safety Nets</h1>
+        </section>
+
+        <section>
+          <h2>Testing</h2>
+          <ul>
+            <li>
+              Good tests can explain how your code should work without looking at the code itself.
+            </li>
+            <li>
+              Only test what you need to test, and no more.
+            </li>
+            <li>
+              Bad tests can do more harm than good.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Automated Testing</h2>
+          <ul>
+            <li>
+              Set up your development environment to “watch” files and automatically execute tests when you save changes.
+            </li>
+            <li>
+              Use a continuous integration testing service that executes your test suite after code is committed to source control.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Using Source Control</h2>
+          <ul>
+            <li>
+              Work in a feature branch
+            </li>
+            <li>
+              Commit early and often
+            </li>
+            <li>
+              Write meaningful commit messages
+            </li>
+            <li>
+              Squash changes before merging
+            </li>
+            <li>
+              Learn to use your tools before an emergency arises
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Using Third-Party APIs</h2>
+          <p>
+            Consider wrapping your APIs with generalized wrappers if you think the framework or service you’re using might need to be replaced. This lets you change the underlying service with minimal disruption to the rest of your code.
+          </p>
+        </section>
+
+        <section>
+          <h2>Documentation</h2>
+          <ul>
+            <li>
+              Provide instructions for installing, testing, and running your project.
+            </li>
+            <li>
+              If your code and tests are written with clarity, you won’t need extensive documentation.
+            </li>
+            <li>
+              Leverage tools to document the code for you.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <image src="./assets/images/derpcat.gif" class="stretch" />
+          <h1>Continuous Improvement</h1>
+        </section>
+
+        <section>
+          <h2>Tools for success</h2>
+          <ul>
+            <li>
+              Use linters to catch errors as you type and before you commit code to source control.
+            </li>
+            <li>
+              Use “beautifiers” to format code according to agreed-upon conventions, e.g. Prettier for JavaScript, Flake8 for Python, etc.
+            </li>
+            <li>
+              Use syntax highlighting in your IDE to help identify code components.
+            </li>
+            <li>
+              Use an IDE that integrates all of the above tools either automatically or with little effort.
+            </li>
+            <li>
+              Use static type-checking if that’s an option.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Choosing new tools or frameworks</h2>
+          <ul>
+            <li>
+              Keep an open mind. Just because a tool or framework is popular does not necessarily mean it’s the best solution for your problem.
+            </li>
+            <li>
+              Find out what other people are using or creating, and why. Read books, blogs, and newsletters. Listen to podcasts. Watch videos. Go to meetups and conferences.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>More Resources</h2>
+          <ul>
+            <li>
+              <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank">Clean Code</a> by Robert C. Martin
+            </li>
+            <li>
+              <a href="https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670" target="_blank">Code Complete</a> by Steve McConnell
+            </li>
+            <li>
+              <a href="https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052" target="_blank">The Pragmatic Programmer</a> by Andrew Hunt and David Thomas
+            </li>
+            <li>
+              <a href="https://www.hanselminutes.com/" target="_blank">The Hanselminutes Podcast</a> by Scott Hanselman
+            </li>
+            <li>
+              Any books, interviews, or talks with <a href="https://www.sandimetz.com/" target="_blank">Sandi Metz</a> or <a href="https://www.kytrinyx.com/" target="_blank">Katrina Owen</a>
+            </li>
+            <li>
+              Newsletters from <a href="https://cooperpress.com/publications/" target="_blank">Cooper Press</a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="full-size">
+            Writing maintainable software
+            <br />
+            is an art that improves with practice
+          </h2>
+          <aside class="notes">
+            Like any technical or artistic endeavor, it requires time, practice, and reflection. Keep striving to improve yourself and the code you write.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Questions</h1>
+          <image src="./assets/images/question.gif" class="plain stretch" />
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <p class="contact">
+            Kelly Fox
+          </p>
+          <ul>
+            <li>
+              <a href="https://github.com/kfox">github.com/kfox</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/kellyfox">@kellyfox</a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        autoPlayMedia: true,
+        dependencies: [
+          // { src: 'plugin/markdown/marked.js' },
+          // { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true }
+        ],
+        history: true,
+        mouseWheel: true,
+        progress: true,
+        showSlideNumber: 'speaker',
+        transition: 'convex',
+        width: 1280,
+        height: 720
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+/**
+ * Pairing with the Future theme for reveal.js
+ *
+ * By Kelly Fox
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans|Open+Sans+Condensed:300&display=swap');
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #222222;
+
+$mainColor: #fff;
+$headingColor: #34A5DA;
+
+$mainFontSize: 42px;
+$mainFont: 'Nunito Sans', Helvetica, sans-serif;
+$headingFont: 'Open Sans Condensed', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: 1px;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #42affa;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 3em;
+$heading2Size: 2em;
+$heading3Size: 1.5em;
+$heading4Size: 1.0em;
+
+section {
+  h1, h2, h3, h4, h5, h6 {
+    &.title {
+      font-size: 3.25em;
+    }
+
+    &.subtitle {
+      color: #FFF;
+      font-style: italic;
+    }
+
+    &.full-size {
+      color: #FFF;
+    }
+  }
+
+  .left {
+    text-align: left;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .contact {
+    padding-top: 100px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+
+  .attribution {
+    color: #bbb;
+    font-style: italic;
+  }
+
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    margin: 0;
+    border-top: 1px solid #666;
+  }
+
+  p {
+    padding-top: 50px;
+  }
+
+  ul li::before {
+    color: #34A5DA;
+    content: "\2023";
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900;
+    text-rendering: auto;
+    width: 0.7em;
+    margin-left: -1.0em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  li {
+    color: #838787;
+  }
+
+  li + li {
+    padding-top: 0.3em;
+  }
+
+  tr:nth-child(even) {
+    background-color: #2E87BB29;
+  }
+
+  td {
+    color: #34A5DA;
+  }
+}
+
+section.has-light-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #222;
+  }
+
+  .attribution {
+    color: #333;
+    font-style: italic;
+  }
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
