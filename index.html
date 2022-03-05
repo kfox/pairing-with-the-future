@@ -9,26 +9,15 @@
 
     <title>Pairing with the Future</title>
 
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/pwtf.css" />
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/league.css" />
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
   </head>
   <body>
     <div class="reveal">
@@ -54,7 +43,7 @@
           <h2>How do developers spend their time?</h2>
           <image src="./assets/images/time-spent.png" class="stretch" />
           <div>
-            Note: This is based on how it feels.
+            (Based on how it feels.)
           </div>
           <aside class="notes">
             From the Coding Horror blog by Jeff Attwood (Stack Overflow co-founder)
@@ -151,7 +140,7 @@ Programs must be written for people to read, and only incidentally for machines 
           <h2>General file layout</h2>
           <ol>
             <li>
-              Imports (built-in, external, internal)
+              Imports &mdash; built-in, external, internal, each section alphabetized
             </li>
             <li>
               Variables common to the entire file
@@ -185,7 +174,7 @@ Programs must be written for people to read, and only incidentally for machines 
             </li>
           </ol>
           <p>
-            Use blank lines to separate sections.
+            Use blank lines to separate sections or logical chunks of code.
           </p>
         </section>
 
@@ -194,7 +183,7 @@ Programs must be written for people to read, and only incidentally for machines 
         </section>
 
         <section>
-          <h2>Sizing recommendations</h2>
+          <h2>Maximum Sizing Goals</h2>
           <table>
             <thead>
               <tr>
@@ -204,8 +193,8 @@ Programs must be written for people to read, and only incidentally for machines 
             </thead>
             <tbody>
               <tr>
-                <td>Line length</td>
-                <td>80 characters</td>
+                <td>Line Length</td>
+                <td>80-120 characters</td>
               </tr>
               <tr>
                 <td>Function Arity</td>
@@ -213,7 +202,7 @@ Programs must be written for people to read, and only incidentally for machines 
               </tr>
               <tr>
                 <td>Function Length</td>
-                <td>10 logical lines</td>
+                <td>4-10 logical lines</td>
               </tr>
               <tr>
                 <td>Class</td>
@@ -245,19 +234,31 @@ Programs must be written for people to read, and only incidentally for machines 
         </section>
 
         <section>
-          <h2>Tips for Good Functions and Methods</h2>
+          <h2>Tips for Writing Good Functions and Methods</h2>
           <ul>
             <li>
-              Functions should do one thing and do it well.
+              Functions should focus on accomplishing one task.
             </li>
             <li>
-              The same inputs should always give the same outputs.
+              Return early from functions when possible to avoid unnecessary processing.
             </li>
             <li>
-              Avoid sharing or changing state.
+              Function layout should be: Variable declarations and assignments, then early returns, then core function logic, then the final return statement. Single blank lines should separate sections for clarity.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>More Tips for Writing Good Functions and Methods</h2>
+          <ul>
+            <li>
+              Code representing the primary behavior of a function shouldn't be buried inside an if/then statement.
             </li>
             <li>
-              Avoid side effects.
+              Write short functions. This makes code easier to read, easier to reuse, easier to review, easier to adapt for other purposes, and easier to test.
+            </li>
+            <li>
+              When possible, avoid: sharing state with other functions, changing state, and side effects.
             </li>
           </ul>
         </section>
@@ -266,7 +267,7 @@ Programs must be written for people to read, and only incidentally for machines 
           <h2>Arity: The number of function arguments</h2>
           <ul>
             <li>
-              Try to keep the number of function arguments to three or less. It can be difficult to remember argument order when two or more arguments are required.
+              Try to keep the number of function arguments to three or less. It can sometimes be difficult to remember argument order with as few as two arguments!
             </li>
             <li>
               If more arguments are needed, pass an “options” object as the last function argument.
@@ -277,28 +278,27 @@ Programs must be written for people to read, and only incidentally for machines 
 
         <section data-background-color="#34A5DA">
           <h2>
-            There are only two hard things in Computer Science: cache invalidation and naming things.
+            There are only two hard problems in Computer Science: cache invalidation, naming things, and off-by-one errors.
           </h2>
-          <p class="attribution">Phil Karlton (possibly)</p>
         </section>
 
         <section>
           <h2>Naming</h2>
           <ul>
             <li>
-              Pick obvious names.
+              Pick obvious names that are representative of the value or behavior.
             </li>
             <li>
               Choose names that help your code read like a narrative.
             </li>
             <li>
-              Don’t avoid long names if they’re appropriate.
+              Use long names if they’re appropriate. Tab-completion makes typing them easy, and finding all uses of a unique name is a simple task.
             </li>
             <li>
-              Define all “magic” numbers or strings as variables to explicitly communicate what they represent.
+              Define all “magic” numbers or strings as variables to explicitly communicate what they represent. For example, NUMBER_OF_SECONDS_IN_A_DAY is easier to understand than 86400.
             </li>
             <li>
-              Check for namespace collisions.
+              Check for namespace collisions. Will the name you choose cause confusion with another existing name?
             </li>
           </ul>
         </section>
@@ -309,34 +309,37 @@ Programs must be written for people to read, and only incidentally for machines 
         </section>
 
         <section>
-          <h2>Comments are useful for ...</h2>
+          <h2>When To Use Comments</h2>
           <ul>
             <li>
               API documentation, often for use with tools like Javadoc, JSDoc, Swagger, etc.
             </li>
             <li>
-              Linter directives, for tools like ESLint (JavaScript), flake8 (Python), etc.
+              To specify or ignore linter rules, for tools like ESLint (JavaScript), flake8 (Python), etc.
             </li>
             <li>
-              Describing curious code that you were forced to include for non-obvious reasons, e.g. to circumvent a known bug or deal with a poorly-written API. (Include a link to the issue.)
+              Describing unusual code that you were forced to include for non-obvious reasons, e.g. to circumvent a known bug or deal with a poorly-written API. (Include a link to the issue, if possible.)
             </li>
             <li>
-              Illustrating program flow or data handling in code samples, e.g. for beginners learning to code, or when explaining details of a new programming concept.
+              Illustrating program flow or data handling in code samples
+            </li>
+            <li>
+              Pseudocode, but only as temporary placeholders for actual code
             </li>
           </ul>
         </section>
 
         <section>
-          <h2>Comments are Superfluous When ...</h2>
+          <h2>When Not To Use Comments</h2>
           <ul>
             <li>
-              Describing normal functionality.
+              Describing normal or conventional functionality. The code should describe itself.
             </li>
             <li>
               Describing complex functionality. Refactor your code instead.
             </li>
             <li>
-              Preventing code from being executed, unless it’s for temporary debugging.
+              Preventing code from being executed, except for temporary debugging.
             </li>
             <li>
               Keeping code around “just in case”. Delete it and rely on version control.
@@ -352,7 +355,28 @@ Programs must be written for people to read, and only incidentally for machines 
         </section>
 
         <section>
+          <h2>Reasons to Refactor Code</h2>
+          <ul>
+            <li>
+              DRY-ness
+            </li>
+            <li>
+              Simplicity
+            </li>
+            <li>
+              Clarity
+            </li>
+            <li>
+              Testability
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2>Refactoring for DRY-ness</h2>
+          <h3>
+            DRY = Don't Repeat Yourself
+          </h3>
           <ul>
             <li>
               Extract repeated patterns from your code to helper functions.
@@ -364,9 +388,6 @@ Programs must be written for people to read, and only incidentally for machines 
               Avoid over-generalizing functions, classes, or objects. Consider using function composition, inheriting from superclasses, or partitioning objects.
             </li>
           </ul>
-          <p>
-            DRY = Don't Repeat Yourself
-          </p>
         </section>
 
         <section>
@@ -376,7 +397,7 @@ Programs must be written for people to read, and only incidentally for machines 
               Avoid nesting. Try extracting nested code to external functions.
             </li>
             <li>
-              Avoid clever code. Cleverness often conceals functionality; save it for high-performance or coding challenges.
+              Avoid clever code. Cleverness often conceals functionality &mdash; save it for high-performance or coding challenges.
             </li>
           </ul>
         </section>
@@ -394,7 +415,7 @@ Programs must be written for people to read, and only incidentally for machines 
               Ensure magic numbers and strings are replaced by meaningful constants.
             </li>
             <li>
-              Don’t be afraid to create one-line functions.
+              Don’t be afraid to create one-line functions!
             </li>
             <li>
               Write more verbose code if it facilitates understanding and doesn’t adversely impact performance.
@@ -431,7 +452,7 @@ Programs must be written for people to read, and only incidentally for machines 
               Good tests can explain how your code should work without looking at the code itself.
             </li>
             <li>
-              Only test what you need to test, and no more.
+              Only test what you need to test.
             </li>
             <li>
               Bad tests can do more harm than good.
@@ -455,19 +476,19 @@ Programs must be written for people to read, and only incidentally for machines 
           <h2>Using Source Control</h2>
           <ul>
             <li>
-              Work in a feature branch
+              Work in a feature branch.
             </li>
             <li>
-              Commit early and often
+              Commit early and often.
             </li>
             <li>
-              Write meaningful commit messages
+              Write meaningful commit messages.
             </li>
             <li>
-              Squash changes before merging
+              "Squash" your changes prior to merging.
             </li>
             <li>
-              Learn to use your tools before an emergency arises
+              Learn to use your tools <em>before</em> an emergency arises.
             </li>
           </ul>
         </section>
@@ -475,7 +496,7 @@ Programs must be written for people to read, and only incidentally for machines 
         <section>
           <h2>Using Third-Party APIs</h2>
           <p>
-            Consider wrapping your APIs with generalized wrappers if you think the framework or service you’re using might need to be replaced. This lets you change the underlying service with minimal disruption to the rest of your code.
+            Consider wrapping your APIs with generalized wrappers if you think a service you’re using may eventually need to be replaced. This lets you swap out the underlying service with minimal disruption to the rest of your code.
           </p>
         </section>
 
@@ -483,10 +504,10 @@ Programs must be written for people to read, and only incidentally for machines 
           <h2>Documentation</h2>
           <ul>
             <li>
-              Provide instructions for installing, testing, and running your project.
+              Provide instructions for installing, further developing, testing, contributing to, and using your project.
             </li>
             <li>
-              If your code and tests are written with clarity, you won’t need extensive documentation.
+              If your code and tests are written with clarity, you may not need extensive documentation.
             </li>
             <li>
               Leverage tools to document the code for you.
@@ -500,34 +521,43 @@ Programs must be written for people to read, and only incidentally for machines 
         </section>
 
         <section>
-          <h2>Tools for success</h2>
+          <h2>Tools for Success</h2>
           <ul>
             <li>
-              Use linters to catch errors as you type and before you commit code to source control.
+              Use linters to identify problems as you type &mdash; eslint, pylint, etc.
             </li>
             <li>
-              Use “beautifiers” to format code according to agreed-upon conventions, e.g. Prettier for JavaScript, Flake8 for Python, etc.
+              Use “beautifiers” to format code according to agreed-upon conventions &mdash; JavaScript Standard Style, Black for Python, gofmt, etc.
             </li>
             <li>
-              Use syntax highlighting in your IDE to help identify code components.
+              Use EditorConfig and pre-commit hooks to enforce consistency.
             </li>
             <li>
-              Use an IDE that integrates all of the above tools either automatically or with little effort.
+              Enable syntax highlighting.
             </li>
             <li>
-              Use static type-checking if that’s an option.
+              Leverage type-checking if that’s an option.
+            </li>
+            <li>
+              Consider Dockerizing your entire development environment. (See also: VS Code's devcontainer.json.)
+            </li>
+            <li>
+              Use an IDE that facilitates all of the above with as little effort as possible.
             </li>
           </ul>
         </section>
 
         <section>
-          <h2>Choosing new tools or frameworks</h2>
+          <h2>Choosing new tools</h2>
           <ul>
             <li>
               Keep an open mind. Just because a tool or framework is popular does not necessarily mean it’s the best solution for your problem.
             </li>
             <li>
-              Find out what other people are using or creating, and why. Read books, blogs, and newsletters. Listen to podcasts. Watch videos. Go to meetups and conferences.
+              Find out what other people are using or creating, and why. Read books, blogs, and newsletters. Listen to podcasts. Watch videos. Attend meetups and conferences.
+            </li>
+            <li>
+              Don't "reinvent the wheel" unless you have a good reason to do so.
             </li>
           </ul>
         </section>
@@ -536,13 +566,13 @@ Programs must be written for people to read, and only incidentally for machines 
           <h2>More Resources</h2>
           <ul>
             <li>
-              <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank">Clean Code</a> by Robert C. Martin
+              <a href="https://bookshop.org/books/clean-code-a-handbook-of-agile-software-craftsmanship/9780132350884" target="_blank">Clean Code</a> by Robert C. Martin
             </li>
             <li>
-              <a href="https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670" target="_blank">Code Complete</a> by Steve McConnell
+              <a href="https://bookshop.org/books/code-complete/9780735619678" target="_blank">Code Complete</a> by Steve McConnell
             </li>
             <li>
-              <a href="https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052" target="_blank">The Pragmatic Programmer</a> by Andrew Hunt and David Thomas
+              <a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/" target="_blank">The Pragmatic Programmer</a> by David Thomas, Andrew Hunt
             </li>
             <li>
               <a href="https://www.hanselminutes.com/" target="_blank">The Hanselminutes Podcast</a> by Scott Hanselman
@@ -590,7 +620,9 @@ Programs must be written for people to read, and only incidentally for machines 
       </div>
     </div>
 
-    <script src="js/reveal.js"></script>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
 
     <script>
       // More info about config & dependencies:
@@ -598,12 +630,7 @@ Programs must be written for people to read, and only incidentally for machines 
       // - https://github.com/hakimel/reveal.js#dependencies
       Reveal.initialize({
         autoPlayMedia: true,
-        dependencies: [
-          // { src: 'plugin/markdown/marked.js' },
-          // { src: 'plugin/markdown/markdown.js' },
-          { src: 'plugin/notes/notes.js', async: true },
-          { src: 'plugin/highlight/highlight.js', async: true }
-        ],
+        plugins: [ RevealNotes, RevealHighlight ],
         history: true,
         mouseWheel: true,
         progress: true,
